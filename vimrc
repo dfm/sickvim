@@ -343,7 +343,7 @@ endif
 " map <leader>t :TlistToggle<CR>
 nmap ,t :!(cd %:p:h;ctags *)<CR>        " rebuild tag index
 set tags=./tags,tags                    " configure Ctags to use global project tags
-let Tlist_Auto_Open = 1                 " automatically open taglist
-let Tlist_Use_Right_Window = 1          " only open taglist on the right
-let Tlist_Exit_OnlyWindow = 1           " automatically close taglist when we close the window
+"let Tlist_Auto_Open = 1                 " automatically open taglist
+"let Tlist_Use_Right_Window = 1          " only open taglist on the right
+"let Tlist_Exit_OnlyWindow = 1           " automatically close taglist when we close the window
 
