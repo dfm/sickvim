@@ -292,7 +292,7 @@ if has("autocmd")
     filetype on
     
     " auto-wrap prose
-    autocmd FileType text,markdown,html,tex setlocal wrap linebreak nolist
+    autocmd FileType text,textile,markdown,html,tex setlocal wrap linebreak nolist
 
     autocmd FileType gitconfig setlocal ts=4 sts=4 sw=4 noexpandtab
 endif
@@ -346,4 +346,27 @@ set tags=./tags,tags                    " configure Ctags to use global project 
 "let Tlist_Auto_Open = 1                 " automatically open taglist
 "let Tlist_Use_Right_Window = 1          " only open taglist on the right
 "let Tlist_Exit_OnlyWindow = 1           " automatically close taglist when we close the window
+
+" === vim-coffee-script
+autocmd BufWritePost *.coffee silent CoffeeMake! -b | cwindow
+                                        " autocompile coffee scripts
+au BufNewFile,BufRead *.less set filetype=css
+
+" === run Python scripts using Command-R
+"     it leaves a space at the end so you can add command line args
+au BufNewFile,BufRead *.py nmap <D-r> :silent !nt python % 
+
+" Fix MiniBufExpl quit function
+" https://github.com/fholgado/minibufexpl.vim/issues/1
+" au BufEnter * call MyLastWindow()
+" function! MyLastWindow()
+"   " if the window is quickfix go on
+"   if &buftype=="nofile"
+"     " if this window is last on screen quit without warning
+"     if winnr('$') < 2
+"       quit!
+"     endif
+"   endif
+" endfunction
+
 
