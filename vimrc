@@ -355,6 +355,7 @@ au BufNewFile,BufRead *.less set filetype=css
 " === run Python scripts using Command-R
 "     it leaves a space at the end so you can add command line args
 au BufNewFile,BufRead *.py nmap <D-r> :silent !nt python % 
+autocmd BufWritePre *.py :%s/\s\+$//e " clean up end of line whitespace
 
 " Fix MiniBufExpl quit function
 " https://github.com/fholgado/minibufexpl.vim/issues/1
