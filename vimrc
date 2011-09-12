@@ -133,7 +133,17 @@ set wildmode=full             " <Tab> cycles between all matching choices.
 
 " Ignore these files when completing
 set wildignore+=*.o,*.obj,.git,*.pyc 
-set grepprg=ack-grep          " replace the default grep program with ack
+set wildignore+=.hg,.git,.svn                    " Version control
+set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
+set wildignore+=*.luac                           " Lua byte code
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
+set wildignore+=*.pyc                            " Python byte code
+set wildignore+=*.spl                            " compiled spelling word lists
+set wildignore+=*.sw?                            " Vim swap files
+set wildignore+=*.DS_Store?                      " OSX bullshit
+
+"set grepprg=ack-grep          " replace the default grep program with ack
 
 " Auto change the directory to the current file I'm working on
 "autocmd BufEnter * lcd %:p:h
@@ -293,6 +303,7 @@ if has("autocmd")
     
     " auto-wrap prose
     autocmd FileType text,textile,markdown,html,tex setlocal wrap linebreak nolist
+    autocmd FileType text,textile,markdown setlocal linewidth=0 wrapmargin=0 " no hardwraps
 
     autocmd FileType gitconfig setlocal ts=4 sts=4 sw=4 noexpandtab
 endif
@@ -356,6 +367,10 @@ au BufNewFile,BufRead *.less set filetype=css
 "     it leaves a space at the end so you can add command line args
 au BufNewFile,BufRead *.py nmap <D-r> :silent !nt python % 
 autocmd BufWritePre *.py :%s/\s\+$//e " clean up end of line whitespace
+" auto-wrap prose
+autocmd BufNewFile,BufRead *.tex setlocal wrap linebreak nolist
+autocmd BufNewFile,BufRead *.textile setlocal wrap linebreak nolist linewidth=0 wrapmargin=0 " no hardwraps
+
 
 " Fix MiniBufExpl quit function
 " https://github.com/fholgado/minibufexpl.vim/issues/1
